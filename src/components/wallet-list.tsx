@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { WALLETS } from "@/lib/constants";
 
-export const WalletList = ({
+const WalletList = ({
   selectWallet,
 }: {
   selectWallet: (x: number) => void;
@@ -33,3 +33,5 @@ export const WalletList = ({
     </div>
   );
 };
+
+export default WalletList;

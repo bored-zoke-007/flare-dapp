@@ -36,7 +36,7 @@ const WalletSelector = ({ children, isOpen, onClose }: WalletSelectorProps) => {
           Connect Wallet
         </DialogTrigger>
 
-        <DialogContent className="w-96">
+        <DialogContent className="w-96 pb-0">
           <motion.div>
             <DialogHeader className="!text-center pb-4">
               <DialogTitle>Connect Wallet</DialogTitle>

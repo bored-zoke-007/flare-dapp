@@ -8,6 +8,16 @@ import LinkedinIcon from "@/assets/icons/socials/linkedin.svg";
 import TelegramIcon from "@/assets/icons/socials/telegram.svg";
 import InstagramIcon from "@/assets/icons/socials/instagram.svg";
 
+import MediumIconDark from "@/assets/icons/socials/medium-dark.svg";
+import RedditIconDark from "@/assets/icons/socials/reddit-dark.svg";
+import GithubIconDark from "@/assets/icons/socials/github-dark.svg";
+import TwitterIconDark from "@/assets/icons/socials/twitter-dark.svg";
+import DiscordIconDark from "@/assets/icons/socials/discord-dark.svg";
+import YoutubeIconDark from "@/assets/icons/socials/youtube-dark.svg";
+import LinkedinIconDark from "@/assets/icons/socials/linkedin-dark.svg";
+import TelegramIconDark from "@/assets/icons/socials/telegram-dark.svg";
+import InstagramIconDark from "@/assets/icons/socials/instagram-dark.svg";
+
 import LedgerIcon from "@/assets/images/wallets/ledger.png";
 import WalletConnectIcon from "@/assets/images/wallets/wallet-connect.jpg";
 import TrustWalletIcon from "@/assets/images/wallets/trust-wallet.jpg";
@@ -92,6 +102,54 @@ export const SOCIALS = [
     name: "github",
     link: "https://github.com/flare-foundation",
     icon: GithubIcon,
+  },
+];
+
+export const SOCIALS_WITH_DARK_ICONS = [
+  {
+    name: "twitter",
+    link: "https://twitter.com/FlareNetworks",
+    icon: TwitterIconDark,
+  },
+  {
+    name: "discord",
+    link: "https://discord.com/invite/flarenetwork",
+    icon: DiscordIconDark,
+  },
+  {
+    name: "telegram",
+    link: "https://t.me/FlareNetwork",
+    icon: TelegramIconDark,
+  },
+  {
+    name: "youtube",
+    link: "https://www.youtube.com/c/Flare_Networks",
+    icon: YoutubeIconDark,
+  },
+  {
+    name: "medium",
+    link: "https://medium.com/flarenetwork",
+    icon: MediumIconDark,
+  },
+  {
+    name: "reddit",
+    link: "https://www.reddit.com/r/FlareNetworks",
+    icon: RedditIconDark,
+  },
+  {
+    name: "instagram",
+    link: "https://www.instagram.com/flare_networks",
+    icon: InstagramIconDark,
+  },
+  {
+    name: "linkedin",
+    link: "https://www.linkedin.com/company/flarenetwork/",
+    icon: LinkedinIconDark,
+  },
+  {
+    name: "github",
+    link: "https://github.com/flare-foundation",
+    icon: GithubIconDark,
   },
 ];
 
@@ -281,4 +339,282 @@ export const WALLETS = [
   //   link: "binance.com",
   //   icon: BinanceWalletIcon,
   // },
+];
+
+export const MOBILE_NAVIGATION = [
+  {
+    label: "Learn",
+    content: [
+      {
+        label: "Introduction",
+        links: [
+          { label: "Flare 101", link: "https://flare.network/flare-101/" },
+          { label: "FlareDrops", link: "https://flare.network/flaredrops/" },
+          {
+            label: "Songbird Canary Network",
+            link: "https://flare.network/songbird/",
+          },
+          {
+            label: "Education videos",
+            link: "https://flare.network/education-videos/",
+          },
+          { label: "FAQs", link: "https://flare.network/faqs/" },
+          {
+            label: "Flare Tokenomics",
+            link: "https://flare.network/tokenomics-flr-updated/",
+          },
+        ],
+      },
+      {
+        label: "Technology",
+        links: [
+          { label: "FTSO", link: "https://flare.network/flare-101/" },
+          {
+            label: "Data Connector",
+            link: "https://flare.network/flaredrops/",
+          },
+          {
+            label: "FAssets",
+            link: "https://flare.network/songbird/",
+          },
+        ],
+      },
+      {
+        label: "News and Research",
+        links: [
+          { label: "News & Blog", link: "https://flare.network/flare-101/" },
+          {
+            label: "White papers & research",
+            link: "https://flare.network/flaredrops/",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Build",
+    content: [
+      {
+        label: "Resources",
+        links: [
+          { label: "Start Building", link: "https://flare.network/flare-101/" },
+          {
+            label: "Developer Hub ↗",
+            link: "https://flare.network/flaredrops/",
+          },
+          {
+            label: "Tech documentation ↗",
+            link: "https://flare.network/songbird/",
+          },
+          {
+            label: "Flare Github ↗",
+            link: "https://flare.network/education-videos/",
+          },
+        ],
+      },
+      {
+        label: "Tools & SUpport",
+        links: [
+          { label: "API Portal ↗", link: "https://flare.network/flare-101/" },
+          {
+            label: "Grants program",
+            link: "https://flare.network/flaredrops/",
+          },
+          {
+            label: "Bug bounty program",
+            link: "https://flare.network/songbird/",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Use",
+    content: [
+      {
+        label: "How-to guides",
+        links: [
+          {
+            label: "Delegate to the FTSO",
+            link: "https://flare.network/flare-101/",
+          },
+          {
+            label: "Claim FlareDrops",
+            link: "https://flare.network/flaredrops/",
+          },
+          {
+            label: "Stake FLR",
+            link: "https://flare.network/songbird/",
+          },
+        ],
+      },
+      {
+        label: "Flare Ecosystem",
+        links: [
+          {
+            label: "Ecosystem dapps",
+            link: "https://flare.network/flare-101/",
+          },
+          {
+            label: "Wallets",
+            link: "https://flare.network/flaredrops/",
+          },
+          {
+            label: "FlareStake staking tool ↗",
+            link: "https://flare.network/songbird/",
+          },
+          {
+            label: "Flare Portal ↗",
+            link: "https://flare.network/songbird/",
+          },
+          {
+            label: "Bridge to Flare ↗",
+            link: "https://flare.network/songbird/",
+          },
+        ],
+      },
+      {
+        label: "Utilities",
+        links: [
+          {
+            label: "Governance ↗",
+            link: "https://flare.network/flare-101/",
+          },
+          {
+            label: "Proposals repository ↗",
+            link: "https://flare.network/flaredrops/",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Operate",
+    content: [
+      {
+        label: "Guidance",
+        links: [
+          {
+            label: "How to set up a node",
+            link: "https://flare.network/flare-101/",
+          },
+          {
+            label: "Become a data provider",
+            link: "https://flare.network/flaredrops/",
+          },
+        ],
+      },
+      {
+        label: "Tools",
+        links: [
+          {
+            label: "FlareMetrics ↗",
+            link: "https://flare.network/flare-101/",
+          },
+          {
+            label: "Arkham Intelligence ↗",
+            link: "https://flare.network/flaredrops/",
+          },
+        ],
+      },
+      {
+        label: "Explorers",
+        links: [
+          {
+            label: "Flarescan Explorer ↗",
+            link: "https://flare.network/flare-101/",
+          },
+          {
+            label: "Flare Block Explorer ↗",
+            link: "https://flare.network/flaredrops/",
+          },
+          {
+            label: "Songbird Block Explorer ↗",
+            link: "https://flare.network/flare-101/",
+          },
+          {
+            label: "Coston2 Block Explorer ↗",
+            link: "https://flare.network/flaredrops/",
+          },
+          {
+            label: "Coston Block Explorer ↗",
+            link: "https://flare.network/flare-101/",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Connect",
+    content: [
+      {
+        label: "Information",
+        links: [
+          {
+            label: "Upcoming events",
+            link: "https://flare.network/flare-101/",
+          },
+          {
+            label: "News & blog",
+            link: "https://flare.network/flaredrops/",
+          },
+          {
+            label: "Flare store ↗",
+            link: "https://flare.network/flare-101/",
+          },
+          {
+            label: "Flare team",
+            link: "https://flare.network/flaredrops/",
+          },
+          {
+            label: "Newsletter sign up",
+            link: "https://flare.network/flare-101/",
+          },
+          {
+            label: "Careers",
+            link: "https://flare.network/flaredrops/",
+          },
+          {
+            label: "Contact us",
+            link: "https://flare.network/flare-101/",
+          },
+        ],
+      },
+      {
+        label: "Follow us",
+        links: [],
+      },
+    ],
+  },
+  {
+    label: "News",
+    content: [
+      {
+        label: "Flare news & updates",
+        links: [
+          {
+            label: "Welcome to Flare Fair: DeFi Gamified",
+            link: "https://flare.network/flare-fair/",
+          },
+          {
+            label: "Flare Content Bounty: Get paid for creativity",
+            link: "https://flare.network/flare-content-creation-bounty/",
+          },
+          {
+            label:
+              "Shaping the future of blockchain and AI: FLare x Google Cloud Hackathon",
+            link: "https://flare.network/flare-x-google-cloud-hackathon/",
+          },
+          {
+            label: "FXRP is live on Songbird: Mint, trade, and get rewarded",
+            link: "https://flare.network/fxrp-is-live-on-songbird/",
+          },
+          {
+            label: "All news",
+            link: "https://flare.network/news/",
+          },
+        ],
+      },
+    ],
+  },
 ];

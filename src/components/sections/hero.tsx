@@ -3,10 +3,11 @@
 import { useState } from "react";
 
 import Link from "next/link";
-import { WalletList } from "../wallet-list";
-import WalletSelector from "../wallet-selector";
-import { WALLETS } from "@/lib/constants";
 import Image from "next/image";
+import WalletList from "../wallet-list";
+import WalletSelector from "../wallet-selector";
+
+import { WALLETS } from "@/lib/constants";
 
 const HeroSection = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,10 +37,10 @@ const HeroSection = () => {
           </p>
         </div>
       </Link>
-      <div className="flex flex-col items-center gap-3 md:gap-6 justify-center max-w-[330px] mx-auto sm:flex-row font-medium">
+      <div className="flex flex-col items-center gap-3 md:gap-6 justify-center max-w-[330px] mx-auto sm:flex-row">
         <Link
           href="#"
-          className="grow shrink-0 w-[165px] py-4 lg:py-3 border border-current rounded-full"
+          className="grow shrink-0 w-[165px] py-4 lg:py-3 border border-current rounded-full hover:bg-[#242425] hover:text-white transition"
         >
           Learn More
         </Link>
