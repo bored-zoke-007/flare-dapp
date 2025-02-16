@@ -60,7 +60,7 @@ const WalletList = ({ selectWallet, setWalletStatus }: WalletListProps) => {
       ))}
       {walletList.length === 0 && (
         <div className="min-h-64 flex items-center justify-center text-sm">
-          Couldn't find wallet <strong className="pl-1">{query}</strong>
+          Couldn&apos;t find wallet <strong className="pl-1">{query}</strong>
         </div>
       )}
     </div>
