@@ -27,14 +27,7 @@ interface CircleConfig {
 
 // Constants
 const DEFAULT_COLOR_SCHEME: ColorScheme = {
-  vector: [
-    "#c6a0cf",
-    "#feb1d5",
-    "#ff9767",
-    "#99c4f1",
-    "#feb1d5",
-    "#99c4f1",
-  ] as const,
+  vector: ["#c6a0cf", "#feb1d5", "#ff9767", "#99c4f1", "#feb1d5", "#99c4f1"],
   getRandom: function () {
     return this.vector[Math.floor(Math.random() * this.vector.length)];
   },
@@ -42,7 +35,7 @@ const DEFAULT_COLOR_SCHEME: ColorScheme = {
 
 const DEFAULT_CIRCLE_CONFIG: CircleConfig = {
   minRadius: 20,
-  maxRadius: 0, // Will be set in constructor
+  maxRadius: 100, // Default value
   mouseInteractionRadius: 50,
   growthRate: 3,
   shrinkRate: 1,
@@ -53,11 +46,7 @@ const DEFAULT_CIRCLE_CONFIG: CircleConfig = {
 };
 
 // Utility functions
-export const randomNumber = (
-  max = 1,
-  min = 0,
-  forbidden: number[] = []
-): number => {
+const randomNumber = (max = 1, min = 0, forbidden: number[] = []): number => {
   if (max < min) [max, min] = [min, max];
   let res;
   do {
@@ -71,20 +60,27 @@ const getWindowDimensions = () => ({
   height: typeof window !== "undefined" ? window.innerHeight : 0,
 });
 
-export class Circle {
+class Circle {
   private r: number;
   private readonly config: CircleConfig;
+  private x: number;
+  private y: number;
+  private dx: number;
+  private dy: number;
+  private readonly color: string;
+  private ctx: CanvasRenderingContext2D;
 
   constructor(
-    private readonly ctx: CanvasRenderingContext2D,
+    ctx: CanvasRenderingContext2D,
     customConfig: Partial<CircleConfig> = {},
     colorScheme: ColorScheme = DEFAULT_COLOR_SCHEME
   ) {
+    this.ctx = ctx;
     const windowDimensions = getWindowDimensions();
 
     this.config = {
       ...DEFAULT_CIRCLE_CONFIG,
-      maxRadius: windowDimensions.width / 3,
+      maxRadius: windowDimensions.width / 6, // Ensure it's properly set
       ...customConfig,
     };
 
@@ -106,15 +102,9 @@ export class Circle {
     this.draw();
   }
 
-  get r_min(): number {
+  private get r_min(): number {
     return randomNumber(this.config.maxRadius * 0.9, this.config.minRadius);
   }
-
-  private x: number;
-  private y: number;
-  private dx: number;
-  private dy: number;
-  private readonly color: string;
 
   private get side() {
     return {
@@ -134,6 +124,7 @@ export class Circle {
 
   public run(mouseX: number | null, mouseY: number | null): void {
     const canvas = this.ctx.canvas;
+    if (!canvas) return;
 
     // Handle boundary collisions
     if (this.side.right > canvas.width || this.side.left < 0) this.dx *= -1;
@@ -165,9 +156,6 @@ const AnimatedCanvas: React.FC = memo(() => {
   const mouseRef = useRef<MousePosition>({ x: null, y: null });
   const animationFrameRef = useRef<number | undefined>(undefined);
 
-  const windowDimensions = getWindowDimensions();
-  const circleCount = Math.floor(windowDimensions.width / 6);
-
   const resetCanvas = useCallback((ctx: CanvasRenderingContext2D) => {
     const { width, height } = getWindowDimensions();
     ctx.canvas.width = width;
@@ -187,13 +175,15 @@ const AnimatedCanvas: React.FC = memo(() => {
     const init = () => {
       resetCanvas(ctx);
       circlesRef.current = Array.from(
-        { length: circleCount },
+        { length: Math.floor(getWindowDimensions().width / 10) }, // Dynamic count
         () => new Circle(ctx)
       );
       animate();
     };
 
     const animate = () => {
+      if (!ctx) return; // Ensure context still exists
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       circlesRef.current.forEach((circle) =>
         circle.run(mouseRef.current.x, mouseRef.current.y)
@@ -203,15 +193,15 @@ const AnimatedCanvas: React.FC = memo(() => {
 
     const handleResize = () => {
       resetCanvas(ctx);
-      // Optionally reinitialize circles on resize if needed
-      // circlesRef.current = Array.from({ length: circleCount }, () => new Circle(ctx));
+      // Reinitialize circles on resize to keep things smooth
+      circlesRef.current = Array.from(
+        { length: Math.floor(getWindowDimensions().width / 10) },
+        () => new Circle(ctx)
+      );
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = {
-        x: e.clientX,
-        y: e.clientY,
-      };
+      mouseRef.current = { x: e.clientX, y: e.clientY };
     };
 
     init();
@@ -220,19 +210,18 @@ const AnimatedCanvas: React.FC = memo(() => {
     window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
-      if (animationFrameRef.current) {
+      if (animationFrameRef.current)
         cancelAnimationFrame(animationFrameRef.current);
-      }
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [circleCount, resetCanvas]);
+  }, [resetCanvas]);
 
   return (
     <canvas
       ref={canvasRef}
       id="canvas"
-      className="canvas fixed w-full h-full top-0 left-0 -z-[1]"
+      className="canvas fixed w-full h-full top-0 left-0 -z-[1] pointer-events-auto select-none"
       aria-label="Animated background with floating circles"
     />
   );

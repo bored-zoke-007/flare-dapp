@@ -56,6 +56,26 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      animation: {
+        "gradient-noise": "gradient-noise 10s ease infinite",
+        "infinite-carousel": "infinite-carousel 40s linear infinite",
+      },
+      backgroundImage: {
+        "canvas-gradient":
+          "linear-gradient(135deg, #e621598a 10%, #e621598a 100%)",
+        "hero-gradient":
+          "linear-gradient(135deg, rgba(255, 203, 112, 0.8) 0%, rgba(199, 81, 192, 0.8) 25%, rgba(255, 105, 0, 0.5) 50%, rgb(152, 150, 240, 0.5) 100%)",
+      },
+      keyframes: {
+        "gradient-noise": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+        "infinite-carousel": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-3840px)" },
+        },
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-// import AnimatedCanvas from "@/components/animated-canvas";
-import "./globals.css";
+
 import Popup from "@/components/popup";
+import AnimatedCanvas from "@/components/animated-canvas";
+
+import "./globals.css";
 
 const monumentGrotesk = localFont({
   src: [
@@ -40,7 +42,7 @@ export default function RootLayout({
       <body suppressHydrationWarning className={`${monumentGrotesk.variable}`}>
         {children}
         <Popup />
-        {/* <AnimatedCanvas /> */}
+        <AnimatedCanvas />
       </body>
     </html>
   );

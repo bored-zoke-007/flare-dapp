@@ -22,7 +22,7 @@ const CommunitySection = () => {
         </h3>
 
         <div className="h-[470px] max-w-full overflow-hidden">
-          <div className="w-[7680px] h-full flex gap-5 scrolly [&>]:h-full">
+          <div className="w-[7680px] h-full flex gap-5 animate-infinite-carousel hover:paused *:h-full">
             <div className="w-[611px] rounded-[6px] overflow-hidden">
               <Image
                 src={ImageOne}
@@ -33,7 +33,7 @@ const CommunitySection = () => {
               />
             </div>
 
-            <div className="w-[305px] grid grid-rows-2 gap-5 [&>div]:rounded-[6px]">
+            <div className="w-[305px] grid grid-rows-2 gap-5 *:rounded-[6px]">
               <div className="bg-[#242425] p-12 flex items-center justify-center">
                 <div className="w-full flex justify-center gap-5 flex-wrap">
                   {SOCIALS.map(({ icon, link, name }) => (
@@ -81,7 +81,7 @@ const CommunitySection = () => {
               />
             </div>
 
-            <div className="w-[305px] grid grid-rows-2 gap-5 [&>div]:rounded-[6px]">
+            <div className="w-[305px] grid grid-rows-2 gap-5 *:rounded-[6px]">
               <div className="overflow-hidden relative">
                 <Image
                   src={ImageFive}
@@ -123,7 +123,7 @@ const CommunitySection = () => {
               />
             </div>
 
-            <div className="w-[305px] grid grid-rows-2 gap-5 [&>div]:rounded-[6px]">
+            <div className="w-[305px] grid grid-rows-2 gap-5 *:rounded-[6px]">
               <div className="overflow-hidden relative">
                 <Image
                   src={ImageEight}
@@ -172,7 +172,7 @@ const CommunitySection = () => {
               />
             </div>
 
-            <div className="w-[305px] grid grid-rows-2 gap-5 [&>div]:rounded-[6px]">
+            <div className="w-[305px] grid grid-rows-2 gap-5 *:rounded-[6px]">
               <div className="bg-[#242425] p-12 flex items-center justify-center">
                 <div className="w-full flex justify-center gap-5 flex-wrap">
                   {SOCIALS.map(({ icon, link, name }) => (
@@ -220,7 +220,7 @@ const CommunitySection = () => {
               />
             </div>
 
-            <div className="w-[305px] grid grid-rows-2 gap-5 [&>div]:rounded-[6px]">
+            <div className="w-[305px] grid grid-rows-2 gap-5 *:rounded-[6px]">
               <div className="overflow-hidden relative">
                 <Image
                   src={ImageFive}
@@ -262,7 +262,7 @@ const CommunitySection = () => {
               />
             </div>
 
-            <div className="w-[305px] grid grid-rows-2 gap-5 [&>div]:rounded-[6px]">
+            <div className="w-[305px] grid grid-rows-2 gap-5 *:rounded-[6px]">
               <div className="overflow-hidden relative">
                 <Image
                   src={ImageFive}

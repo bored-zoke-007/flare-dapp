@@ -25,7 +25,7 @@ const HeroSection = () => {
         target="_blank"
         href="https://flare.network/flare-101/"
       >
-        <div className="animated-gradient-text max-w-screen-lg">
+        <div className="bg-hero-gradient bg-clip-text text-transparent [background-size:200%_200%] animate-gradient-noise max-w-screen-lg">
           <h1 className="text-[min(42px,10vw)] tracking-tight md:text-[min(10vw,120px)] lg:tracking-tighter font-medium leading-tight max-w-screen-xl">
             Connect Everything.
           </h1>
@@ -58,6 +58,7 @@ const HeroSection = () => {
                       src={selectedWallet.icon}
                       width={112}
                       height={112}
+                      priority
                       className="size-full object-contain rounded-lg"
                     />
                   </div>

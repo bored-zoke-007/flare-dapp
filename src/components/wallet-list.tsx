@@ -25,6 +25,7 @@ export const WalletList = ({
             src={wallet.icon}
             width={32}
             height={32}
+            priority
             className="w-auto h-auto object-contain rounded-lg"
           />
         </button>
