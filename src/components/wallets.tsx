@@ -81,9 +81,9 @@ export const SelectedWallet = ({
     icon: StaticImageData;
   };
 }) => {
-  if (!selectedWallet) return null;
-
   useTimeout(resetWalletIdxAndCollectForm, 5000);
+
+  if (!selectedWallet) return null;
 
   return (
     <div className="min-h-64 flex items-center justify-center">
