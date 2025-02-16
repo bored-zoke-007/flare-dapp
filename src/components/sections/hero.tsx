@@ -1,13 +1,9 @@
 "use client";
 
-import { useState } from "react";
-
 import Link from "next/link";
 import { Wallets } from "../wallets";
 
 const HeroSection = () => {
-  const [walletIdx, setWalletIdx] = useState<number>();
-
   return (
     <section
       id="hero"
@@ -36,7 +32,7 @@ const HeroSection = () => {
         >
           Learn More
         </Link>
-        <Wallets walletIdx={walletIdx} setWalletIdx={setWalletIdx} />
+        <Wallets />
       </div>
     </section>
   );

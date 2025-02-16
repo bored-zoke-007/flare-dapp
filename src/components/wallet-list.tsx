@@ -9,7 +9,7 @@ import { WALLETS } from "@/lib/constants";
 import { WalletsStatus } from "./wallets";
 
 type WalletListProps = {
-  selectWallet: (x: number) => void;
+  selectWallet: (x: string) => void;
   setWalletStatus: (x: WalletsStatus) => void;
 };
 
@@ -38,12 +38,12 @@ const WalletList = ({ selectWallet, setWalletStatus }: WalletListProps) => {
           className="absolute left-2 top-1/2 -translate-y-1/2"
         />
       </div>
-      {walletList.map((wallet, idx) => (
+      {walletList.map((wallet) => (
         <button
           key={wallet.name}
           className="flex items-center bg-zinc-100 rounded-xl p-4 hover:opacity-50 transition gap-4 justify-between text-lg font-medium border-2 border-zinc-400/0"
           onClick={() => {
-            selectWallet(idx);
+            selectWallet(wallet.name);
             setWalletStatus("pending");
           }}
         >

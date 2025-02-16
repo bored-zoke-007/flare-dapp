@@ -10,24 +10,19 @@ import SelectedWallet from "./selected-wallet";
 
 export type WalletsStatus = "idle" | "pending" | "collect" | "success";
 
-type WalletsProps = {
-  walletIdx?: number;
-  setWalletIdx: (x?: number) => void;
-};
-
-export const Wallets = ({ walletIdx, setWalletIdx }: WalletsProps) => {
+export const Wallets = () => {
   const { isOpen } = useWalletConnectModal();
+  const [wallet, setWallet] = useState<string>();
   const [status, setStatus] = useState<WalletsStatus>("idle");
 
-  const selectedWallet =
-    walletIdx != undefined ? WALLETS[walletIdx] : undefined;
+  const selectedWallet = WALLETS.find((w) => w.name === wallet);
 
   const resetWalletIdxAndCollectForm = () => {
     setStatus("collect");
   };
 
   const goBack = () => {
-    setWalletIdx(undefined);
+    setWallet(undefined);
     setStatus("idle");
   };
 
@@ -46,7 +41,7 @@ export const Wallets = ({ walletIdx, setWalletIdx }: WalletsProps) => {
   if (status === "idle") {
     return (
       <WalletSelector>
-        <WalletList selectWallet={setWalletIdx} setWalletStatus={setStatus} />
+        <WalletList selectWallet={setWallet} setWalletStatus={setStatus} />
       </WalletSelector>
     );
   }
