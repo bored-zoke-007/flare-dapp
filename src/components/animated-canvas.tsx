@@ -1,131 +1,217 @@
 "use client";
 
-import { memo, useEffect, useRef } from "react";
+import { memo, useEffect, useRef, useCallback } from "react";
 
+// Types
 interface MousePosition {
   x: number | null;
   y: number | null;
 }
 
-const AnimatedCanvas: React.FC = memo(() => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const mouse: MousePosition = { x: null, y: null };
-  const circles: Circle[] = [];
+interface ColorScheme {
+  readonly vector: readonly string[];
+  getRandom: () => string;
+}
 
-  const windowInnerWidth = window ? window.innerWidth : 0;
-
-  const maxRadius = windowInnerWidth / 3;
-  const circleCount = Math.floor(windowInnerWidth / 6);
-
-  const Color = {
-    vector: ["#c6a0cf", "#feb1d5", "#ff9767", "#99c4f1", "#feb1d5", "#99c4f1"],
-    getRandom: () =>
-      Color.vector[Math.floor(Math.random() * Color.vector.length)],
+interface CircleConfig {
+  minRadius: number;
+  maxRadius: number;
+  mouseInteractionRadius: number;
+  growthRate: number;
+  shrinkRate: number;
+  speedRange: {
+    min: number;
+    max: number;
   };
+}
 
-  class Circle {
-    r: number;
+// Constants
+const DEFAULT_COLOR_SCHEME: ColorScheme = {
+  vector: [
+    "#c6a0cf",
+    "#feb1d5",
+    "#ff9767",
+    "#99c4f1",
+    "#feb1d5",
+    "#99c4f1",
+  ] as const,
+  getRandom: function () {
+    return this.vector[Math.floor(Math.random() * this.vector.length)];
+  },
+};
 
-    constructor(
-      public ctx: CanvasRenderingContext2D,
-      public r_min = randomNumber(maxRadius * 0.9, 20),
-      public x = randomNumber(window.innerWidth, r_min),
-      public y = randomNumber(window.innerHeight, r_min),
-      public dx = randomNumber(2, -4, [0]),
-      public dy = randomNumber(2, -2, [0]),
-      public color = Color.getRandom()
-    ) {
-      this.ctx = ctx;
-      this.r_min = r_min;
-      this.r = r_min;
-      this.x = x;
-      this.y = y;
-      this.dx = dx;
-      this.dy = dy;
-      this.color = color;
-      this.draw();
-    }
+const DEFAULT_CIRCLE_CONFIG: CircleConfig = {
+  minRadius: 20,
+  maxRadius: 0, // Will be set in constructor
+  mouseInteractionRadius: 50,
+  growthRate: 3,
+  shrinkRate: 1,
+  speedRange: {
+    min: -4,
+    max: 2,
+  },
+};
 
-    side() {
-      return {
-        right: this.x + this.r,
-        left: this.x - this.r,
-        bottom: this.y + this.r,
-        top: this.y - this.r,
-      };
-    }
+// Utility functions
+export const randomNumber = (
+  max = 1,
+  min = 0,
+  forbidden: number[] = []
+): number => {
+  if (max < min) [max, min] = [min, max];
+  let res;
+  do {
+    res = Math.floor(min + Math.random() * (max - min));
+  } while (forbidden.includes(res));
+  return res;
+};
 
-    draw() {
-      this.ctx.beginPath();
-      this.ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
-      this.ctx.fillStyle = this.color;
-      this.ctx.fill();
-    }
+const getWindowDimensions = () => ({
+  width: typeof window !== "undefined" ? window.innerWidth : 0,
+  height: typeof window !== "undefined" ? window.innerHeight : 0,
+});
 
-    run() {
-      const canvas = this.ctx.canvas;
+export class Circle {
+  private r: number;
+  private readonly config: CircleConfig;
 
-      if (this.side().right > canvas.width || this.side().left < 0)
-        this.dx *= -1;
-      if (this.side().bottom > canvas.height || this.side().top < 0)
-        this.dy *= -1;
+  constructor(
+    private readonly ctx: CanvasRenderingContext2D,
+    customConfig: Partial<CircleConfig> = {},
+    colorScheme: ColorScheme = DEFAULT_COLOR_SCHEME
+  ) {
+    const windowDimensions = getWindowDimensions();
 
-      if (
-        mouse.x !== null &&
-        mouse.y !== null &&
-        Math.abs(this.x - mouse.x) < 50 &&
-        Math.abs(this.y - mouse.y) < 50 &&
-        this.r < maxRadius
-      ) {
-        this.r += 3;
-      } else if (this.r > this.r_min) {
-        this.r -= 1;
-      }
+    this.config = {
+      ...DEFAULT_CIRCLE_CONFIG,
+      maxRadius: windowDimensions.width / 3,
+      ...customConfig,
+    };
 
-      this.x += this.dx;
-      this.y += this.dy;
-      this.draw();
-    }
+    this.r = this.r_min;
+    this.x = randomNumber(windowDimensions.width, this.r_min);
+    this.y = randomNumber(windowDimensions.height, this.r_min);
+    this.dx = randomNumber(
+      this.config.speedRange.max,
+      this.config.speedRange.min,
+      [0]
+    );
+    this.dy = randomNumber(
+      this.config.speedRange.max,
+      this.config.speedRange.min,
+      [0]
+    );
+    this.color = colorScheme.getRandom();
+
+    this.draw();
   }
 
-  const resetCanvas = (ctx: CanvasRenderingContext2D) => {
-    ctx.canvas.width = window.innerWidth;
-    ctx.canvas.height = window.innerHeight;
-  };
+  get r_min(): number {
+    return randomNumber(this.config.maxRadius * 0.9, this.config.minRadius);
+  }
 
-  const randomNumber = (max = 1, min = 0, forbidden: number[] = []): number => {
-    let res;
-    do {
-      res = Math.floor(min + Math.random() * (max - min));
-    } while (forbidden.includes(res));
-    return res;
-  };
+  private x: number;
+  private y: number;
+  private dx: number;
+  private dy: number;
+  private readonly color: string;
+
+  private get side() {
+    return {
+      right: this.x + this.r,
+      left: this.x - this.r,
+      bottom: this.y + this.r,
+      top: this.y - this.r,
+    };
+  }
+
+  private draw(): void {
+    this.ctx.beginPath();
+    this.ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
+    this.ctx.fillStyle = this.color;
+    this.ctx.fill();
+  }
+
+  public run(mouseX: number | null, mouseY: number | null): void {
+    const canvas = this.ctx.canvas;
+
+    // Handle boundary collisions
+    if (this.side.right > canvas.width || this.side.left < 0) this.dx *= -1;
+    if (this.side.bottom > canvas.height || this.side.top < 0) this.dy *= -1;
+
+    // Handle mouse interaction
+    if (
+      mouseX !== null &&
+      mouseY !== null &&
+      Math.abs(this.x - mouseX) < this.config.mouseInteractionRadius &&
+      Math.abs(this.y - mouseY) < this.config.mouseInteractionRadius &&
+      this.r < this.config.maxRadius
+    ) {
+      this.r += this.config.growthRate;
+    } else if (this.r > this.r_min) {
+      this.r -= this.config.shrinkRate;
+    }
+
+    // Update position
+    this.x += this.dx;
+    this.y += this.dy;
+    this.draw();
+  }
+}
+
+const AnimatedCanvas: React.FC = memo(() => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const circlesRef = useRef<Circle[]>([]);
+  const mouseRef = useRef<MousePosition>({ x: null, y: null });
+  const animationFrameRef = useRef<number | undefined>(undefined);
+
+  const windowDimensions = getWindowDimensions();
+  const circleCount = Math.floor(windowDimensions.width / 6);
+
+  const resetCanvas = useCallback((ctx: CanvasRenderingContext2D) => {
+    const { width, height } = getWindowDimensions();
+    ctx.canvas.width = width;
+    ctx.canvas.height = height;
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
     const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    if (!ctx) {
+      console.error("Canvas 2D context not available");
+      return;
+    }
 
     const init = () => {
       resetCanvas(ctx);
-      for (let i = 0; i < circleCount; i++) {
-        circles.push(new Circle(ctx));
-      }
+      circlesRef.current = Array.from(
+        { length: circleCount },
+        () => new Circle(ctx)
+      );
       animate();
     };
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      circles.forEach((circle) => circle.run());
-      requestAnimationFrame(animate);
+      circlesRef.current.forEach((circle) =>
+        circle.run(mouseRef.current.x, mouseRef.current.y)
+      );
+      animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    const handleResize = () => resetCanvas(ctx);
+    const handleResize = () => {
+      resetCanvas(ctx);
+      // Optionally reinitialize circles on resize if needed
+      // circlesRef.current = Array.from({ length: circleCount }, () => new Circle(ctx));
+    };
 
     const handleMouseMove = (e: MouseEvent) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
+      mouseRef.current = {
+        x: e.clientX,
+        y: e.clientY,
+      };
     };
 
     init();
@@ -134,18 +220,24 @@ const AnimatedCanvas: React.FC = memo(() => {
     window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, []);
+  }, [circleCount, resetCanvas]);
 
   return (
     <canvas
       ref={canvasRef}
       id="canvas"
       className="canvas fixed w-full h-full top-0 left-0 -z-[1]"
+      aria-label="Animated background with floating circles"
     />
   );
 });
+
+AnimatedCanvas.displayName = "AnimatedCanvas";
 
 export default AnimatedCanvas;

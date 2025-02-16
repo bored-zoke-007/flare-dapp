@@ -201,6 +201,7 @@
     background: var(--gradient--luminous-dusk);
     background-size: 200% 200%;
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradient 10s ease-in-out infinite;
   }
@@ -218,8 +219,8 @@
       #e62159 100%
     );
     background-image: linear-gradient(135deg, #e62159 10%, #e62159 100%);
-    -webkit-filter: blur(100px) saturate(1.2);
-    filter: blur(100px) saturate(1.2);
+    -webkit-filter: blur(150px) saturate(1.2);
+    filter: blur(150px) saturate(1.2);
   }
 
   section {

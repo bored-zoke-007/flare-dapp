@@ -16,7 +16,6 @@ import {
 } from "./ui/drawer";
 
 import { motion } from "motion/react";
-import useMeasure from "react-use-measure";
 import { useWindowSize } from "usehooks-ts";
 
 type WalletSelectorProps = {
@@ -26,14 +25,8 @@ type WalletSelectorProps = {
   selectWallet: (x: number) => void;
 };
 
-const WalletSelector = ({
-  children,
-  isOpen,
-  onClose,
-  selectWallet,
-}: WalletSelectorProps) => {
+const WalletSelector = ({ children, isOpen, onClose }: WalletSelectorProps) => {
   const { width } = useWindowSize();
-  const [ref, bounds] = useMeasure();
   const isLargeScreen = width >= 768;
 
   if (isLargeScreen) {

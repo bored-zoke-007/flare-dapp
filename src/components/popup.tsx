@@ -27,10 +27,7 @@ const Popup = () => {
       </Link>
       <button
         className="size-5 rounded-full bg-[#c8c8c8] flex items-center justify-center absolute -top-6 -right-2 p-1 z-10"
-        onClick={() => {
-          console.log("Clicked");
-          setVisible(false);
-        }}
+        onClick={() => setVisible(false)}
       >
         <Image src={CloseIcon} alt="close" width={14} height={14} />
       </button>

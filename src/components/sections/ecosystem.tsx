@@ -35,14 +35,11 @@ import PunkDomains from "@/assets/images/ecosystem/punk-domains.svg";
 import { useWindowSize } from "usehooks-ts";
 
 const EcosystemSection = () => {
-  const { width } = useWindowSize();
-  const isMobileScreen = width < 768;
-
   return (
     <section id="eco-system">
       <div className="space-y-4 text-center py-48 px-6 max-w-screen-xl mx-auto">
         <h3 className="text-[42px] lg:text-[46px] tracking-tight leading-tight text-center pb-6">
-          Who's in the Flare ecosystem?
+          Who&apos;s in the Flare ecosystem?
         </h3>
 
         <div suppressHydrationWarning>
