@@ -3,10 +3,11 @@ import localFont from "next/font/local";
 
 import Popup from "@/components/popup";
 import { Toaster } from "@/components/ui/sonner";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import AnimatedCanvas from "@/components/animated-canvas";
+import TanstackProvider from "@/providers/tanstack-provider";
 
 import "./globals.css";
-import TanstackProvider from "@/providers/tanstack-provider";
 
 const monumentGrotesk = localFont({
   src: [
@@ -43,12 +44,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning className={`${monumentGrotesk.variable}`}>
-        <TanstackProvider>
-          {children}
-          <Popup />
-          <Toaster />
-          <AnimatedCanvas />
-        </TanstackProvider>
+        <NuqsAdapter>
+          <TanstackProvider>
+            {children}
+            <Popup />
+            <Toaster />
+            <AnimatedCanvas />
+          </TanstackProvider>
+        </NuqsAdapter>
       </body>
     </html>
   );

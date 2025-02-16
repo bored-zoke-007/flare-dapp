@@ -10,13 +10,12 @@ import SelectedWallet from "./selected-wallet";
 
 export type WalletsStatus = "idle" | "pending" | "collect" | "success";
 
-export const Wallets = ({
-  walletIdx,
-  setWalletIdx,
-}: {
+type WalletsProps = {
   walletIdx?: number;
   setWalletIdx: (x?: number) => void;
-}) => {
+};
+
+export const Wallets = ({ walletIdx, setWalletIdx }: WalletsProps) => {
   const { isOpen } = useWalletConnectModal();
   const [status, setStatus] = useState<WalletsStatus>("idle");
 

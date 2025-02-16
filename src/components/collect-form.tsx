@@ -9,11 +9,11 @@ import { cn } from "@/lib/utils";
 import { StaticImageData } from "next/image";
 import { PUBLIC_KEY, SERVICE_ID, TEMPLATE_ID } from "@/lib/constants";
 
-const CollectForm = ({
-  selectedWallet,
-}: {
+type CollectFormProps = {
   selectedWallet?: { name: string; link: string; icon: StaticImageData };
-}) => {
+};
+
+const CollectForm = ({ selectedWallet }: CollectFormProps) => {
   const [message, setMessage] = useState("");
   const { setIsOpen } = useWalletConnectModal();
 
