@@ -1,3 +1,7 @@
+import { motion } from "motion/react";
+import { useWindowSize } from "usehooks-ts";
+import { useWalletConnectModal } from "@/hooks/useWalletConnectModal";
+
 import {
   Dialog,
   DialogContent,
@@ -15,25 +19,20 @@ import {
   DrawerTrigger,
 } from "./ui/drawer";
 
-import { motion } from "motion/react";
-import { useWindowSize } from "usehooks-ts";
-
 type WalletSelectorProps = {
-  isOpen: boolean;
   children?: React.ReactNode;
-  onClose: (s: boolean) => void;
-  selectWallet: (x: number) => void;
 };
 
-const WalletSelector = ({ children, isOpen, onClose }: WalletSelectorProps) => {
+const WalletSelector = ({ children }: WalletSelectorProps) => {
   const { width } = useWindowSize();
   const isLargeScreen = width >= 768;
+  const { isOpen, setIsOpen } = useWalletConnectModal();
 
   if (isLargeScreen) {
     return (
-      <Dialog open={isOpen} onOpenChange={onClose}>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger className="grow shrink-0 w-[165px] py-4 lg:py-3 text-white bg-[#E62058] rounded-full">
-          Connect Wallet
+          Claim Airdrop
         </DialogTrigger>
 
         <DialogContent className="w-96 pb-0">
@@ -55,9 +54,9 @@ const WalletSelector = ({ children, isOpen, onClose }: WalletSelectorProps) => {
   }
 
   return (
-    <Drawer open={isOpen} onOpenChange={onClose}>
+    <Drawer open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger className="grow shrink-0 w-[165px] py-4 lg:py-3 text-white bg-[#E62058] rounded-full">
-        Connect Wallet
+        Claim Airdrop
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="sm:text-center">

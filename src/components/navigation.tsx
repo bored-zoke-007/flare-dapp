@@ -2,20 +2,22 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import MobileMenu from "./mobile-menu";
 import Logo from "../assets/images/logo.svg";
 import CloseIcon from "@/assets/images/close.svg";
 import SearchIcon from "../assets/images/search.svg";
 
 import { cn } from "@/lib/utils";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
-import MobileMenu from "./mobile-menu";
+import { useWalletConnectModal } from "@/hooks/useWalletConnectModal";
 
 const tabs = ["Learn", "Build", "Use", "Operate", "Connect", "News"];
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showBanner, setShowBanner] = useLocalStorage("show_banner", true);
+  const { setIsOpen } = useWalletConnectModal();
 
   return (
     <div className="bg-white sticky top-0 z-10">
@@ -59,7 +61,10 @@ const Navigation = () => {
             <button className="ml-28 mr-10">
               <Image src={SearchIcon} alt="logo" width={24} height={24} />
             </button>
-            <button className="py-3.5 px-8 border border-current rounded-full transition hover:text-[#E62058]">
+            <button
+              onClick={() => setIsOpen(true)}
+              className="py-3.5 px-8 border border-current rounded-full transition hover:text-[#E62058]"
+            >
               Connect Wallet
             </button>
           </div>

@@ -1,12 +1,14 @@
 "use client";
 
-import "swiper/css";
-import "swiper/css/pagination";
+import { useWindowSize } from "usehooks-ts";
 
 import Link from "next/link";
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import Ankr from "@/assets/images/ecosystem/ankr.svg";
 import XDFI from "@/assets/images/ecosystem/XDFI.png";
@@ -32,7 +34,6 @@ import HyperNative from "@/assets/images/ecosystem/Hypernative.png";
 import Metropolis from "@/assets/images/ecosystem/metropolis.svg";
 import Uppercent from "@/assets/images/ecosystem/uppercent.svg";
 import PunkDomains from "@/assets/images/ecosystem/punk-domains.svg";
-import { useWindowSize } from "usehooks-ts";
 
 const EcosystemSection = () => {
   return (
@@ -42,7 +43,7 @@ const EcosystemSection = () => {
           Who&apos;s in the Flare ecosystem?
         </h3>
 
-        <div suppressHydrationWarning>
+        <div>
           <EcosystemSlider />
         </div>
 

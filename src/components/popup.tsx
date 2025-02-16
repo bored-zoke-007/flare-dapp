@@ -1,13 +1,14 @@
 "use client";
 
+import { useLocalStorage } from "usehooks-ts";
+
 import Link from "next/link";
 import Image from "next/image";
 import ArrowIcon from "@/assets/images/arrow.svg";
 import CloseIcon from "@/assets/images/close.svg";
-import { useState } from "react";
 
 const Popup = () => {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useLocalStorage("popup_visible", true);
 
   if (!visible) return null;
 

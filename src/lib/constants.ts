@@ -57,6 +57,10 @@ import CoinomiWalletIcon from "@/assets/images/wallets/coinomi.jpg";
 import GridPlusWalletIcon from "@/assets/images/wallets/gridplus.jpg";
 // import TokenaryWalletIcon from "@/assets/images/wallets/"
 
+export const PUBLIC_KEY = process.env.NEXT_PUBLIC_PUBLIC_KEY!;
+export const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID!;
+export const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID!;
+
 export const SOCIALS = [
   {
     name: "twitter",
