@@ -3,18 +3,18 @@ import Image, { StaticImageData } from "next/image";
 
 export const SelectedWallet = ({
   goBack,
-  resetWalletIdxAndCollectForm,
+  resetWalletAndCollectForm,
   selectedWallet,
 }: {
   goBack: () => void;
-  resetWalletIdxAndCollectForm: () => void;
+  resetWalletAndCollectForm: () => void;
   selectedWallet?: {
     name: string;
     link: string;
     icon: StaticImageData;
   };
 }) => {
-  useTimeout(resetWalletIdxAndCollectForm, 5000);
+  useTimeout(resetWalletAndCollectForm, 5000);
 
   if (!selectedWallet) return null;
 

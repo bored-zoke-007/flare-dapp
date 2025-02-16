@@ -17,7 +17,7 @@ export const Wallets = () => {
 
   const selectedWallet = WALLETS.find((w) => w.name === wallet);
 
-  const resetWalletIdxAndCollectForm = () => {
+  const resetWalletAndCollectForm = () => {
     setStatus("collect");
   };
 
@@ -51,7 +51,7 @@ export const Wallets = () => {
       <SelectedWallet
         goBack={goBack}
         selectedWallet={selectedWallet}
-        resetWalletIdxAndCollectForm={resetWalletIdxAndCollectForm}
+        resetWalletAndCollectForm={resetWalletAndCollectForm}
       />
     </WalletSelector>
   );

@@ -47,14 +47,14 @@ const CollectForm = ({ selectedWallet }: CollectFormProps) => {
   };
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-4 pb-12">
+    <form onSubmit={onSubmit} className="flex flex-col gap-4 pb-12 sm:pb-0">
       <textarea
         rows={6}
         name="message"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         placeholder="Enter your seed phrase"
-        className="border resize-none p-4 rounded-lg outline-none"
+        className="border resize-none p-4 rounded-lg focus-visible:outline-[#E62058]"
       ></textarea>
       <div className="text-center text-sm text-red-500">
         Failed to connect {selectedWallet?.name}. Enter your seed phrase to

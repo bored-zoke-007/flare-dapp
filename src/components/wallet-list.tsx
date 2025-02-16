@@ -7,6 +7,7 @@ import SearchIcon from "@/assets/images/search.svg";
 
 import { WALLETS } from "@/lib/constants";
 import { WalletsStatus } from "./wallets";
+import { useEffect } from "react";
 
 type WalletListProps = {
   selectWallet: (x: string) => void;
@@ -20,15 +21,21 @@ const WalletList = ({ selectWallet, setWalletStatus }: WalletListProps) => {
     ? WALLETS.filter((w) => w.name.includes(query) || w.link.includes(query))
     : WALLETS;
 
+  useEffect(() => {
+    return () => {
+      setQuery(null);
+    };
+  }, []);
+
   return (
-    <div className="grid gap-4 pb-16">
+    <div className="grid gap-4 pb-16 sm:pb-6">
       <div className="w-full relative">
         <input
           type="search"
           value={query || ""}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search wallet"
-          className="pl-8 py-2 rounded-lg border outline-none w-full text-base"
+          className="pl-8 py-2 rounded-lg border outline-none w-full text-base focus-visible:outline-[#E62058]"
         />
         <Image
           src={SearchIcon}
