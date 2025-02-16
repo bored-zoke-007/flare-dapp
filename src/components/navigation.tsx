@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
 import { useWalletConnectModal } from "@/hooks/useWalletConnectModal";
+import { AnimatePresence, motion } from "motion/react";
 
 const tabs = ["Learn", "Build", "Use", "Operate", "Connect", "News"];
 
@@ -18,6 +19,11 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showBanner, setShowBanner] = useLocalStorage("show_banner", true);
   const { setIsOpen } = useWalletConnectModal();
+
+  const openWalletConnectModal = () => {
+    setIsMenuOpen(false);
+    setIsOpen(true);
+  };
 
   return (
     <div className="bg-white sticky top-0 z-10">
@@ -103,11 +109,21 @@ const Navigation = () => {
         <div className="relative min-h-full isolate">
           <div
             className={cn(
-              "absolute w-full h-full bg-white p-6 scale-y-0 duration-500 transition origin-top",
+              "absolute w-full h-full bg-white p-6 scale-y-0 duration-1000 transition origin-top [transition-timing-function:cubic-bezier(.550, .055, .675, .19)]",
               { "scale-y-100": isMenuOpen }
             )}
           />
-          <MobileMenu />
+          <AnimatePresence>
+            {isMenuOpen && (
+              <motion.div
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { delay: 0.4 } }}
+              >
+                <MobileMenu openWalletConnectModal={openWalletConnectModal} />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>

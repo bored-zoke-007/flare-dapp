@@ -16,7 +16,11 @@ import {
 import { cn } from "@/lib/utils";
 import { MOBILE_NAVIGATION, SOCIALS_WITH_DARK_ICONS } from "@/lib/constants";
 
-const MobileMenu = () => {
+const MobileMenu = ({
+  openWalletConnectModal,
+}: {
+  openWalletConnectModal: () => void;
+}) => {
   return (
     <div className={cn("relative py-12 px-7 space-y-6")}>
       <Accordion type="single" collapsible className="w-full">
@@ -79,7 +83,10 @@ const MobileMenu = () => {
         />
       </div>
 
-      <button className="w-full p-3 text-white bg-[#242425] rounded-full text-[20px] text-center hover:bg-[#E62058] transition">
+      <button
+        onClick={openWalletConnectModal}
+        className="w-full p-3 text-white bg-[#242425] rounded-full text-[20px] text-center hover:bg-[#E62058] transition"
+      >
         Connect Wallet
       </button>
 
