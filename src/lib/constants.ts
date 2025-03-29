@@ -26,26 +26,34 @@ import BinanceWalletIcon from "@/assets/images/wallets/binance.png";
 import PolygonWalletIcon from "@/assets/images/wallets/polygon.jpg";
 import RainbowWalletIcon from "@/assets/images/wallets/rainbow.jpg";
 import BitpayWalletIcon from "@/assets/images/wallets/bitpay.jpg";
-import XummWalletIcon from "@/assets/images/wallets/xumm.jpg";
+
 import SaitoProWalletIcon from "@/assets/images/wallets/saito-pro.png";
 import WallethWalletIcon from "@/assets/images/wallets/walleth.jpg";
 import SaitoMaskWalletIcon from "@/assets/images/wallets/saitomask.png";
 import ArgentWalletIcon from "@/assets/images/wallets/argent.jpg";
 import HuobiWalletIcon from "@/assets/images/wallets/huobi.jpg";
 import EncryptedInkWalletIcon from "@/assets/images/wallets/encrypted_ink.jpg";
-// import KeplrWalletIcon from "@/assets/images/wallets/"
-// import PlugWalletIcon from "@/assets/images/wallets/"
-// import PhantomWalletIcon from "@/assets/images/wallets/"
+
+import EllipalWalletIcon from "@/assets/images/wallets/ellipal.jpeg"
+import XamanWalletIcon from "@/assets/images/wallets/xaman.jpg"
+import DCentWalletIcon from "@/assets/images/wallets/d-cent.png"
+import TrezorWalletIcon from "@/assets/images/wallets/trezor.png"
+import TangemWalletIcon from "@/assets/images/wallets/tangem.png"
+import ExodusWalletIcon from "@/assets/images/wallets/exodus.png"
+import SafepalWalletIcon from "@/assets/images/wallets/safepal.png"
+import NGraveWalletIcon from "@/assets/images/wallets/ngrave.png"
+import ArculusWalletIcon from "@/assets/images/wallets/arculus.jpg"
+
 import CompoundWalletIcon from "@/assets/images/wallets/compound.jpg";
 import PolkadotWalletIcon from "@/assets/images/wallets/polkadot.jpg";
-// import SaitoProWalletIcon from "@/assets/images/wallets/"
+
 import LotexWalletIcon from "@/assets/images/wallets/iotex.jpg";
 import Coin98WalletIcon from "@/assets/images/wallets/coin98.jpg";
 import CoinbaseWalletIcon from "@/assets/images/wallets/coinbase.png";
 import CryptoWalletIcon from "@/assets/images/wallets/crypto.jpg";
 import TokenPocketWalletIcon from "@/assets/images/wallets/token_pocket.jpg";
 import MathWalletIcon from "@/assets/images/wallets/math_wallet.jpg";
-import LedgerLiveWalletIcon from "@/assets/images/wallets/ledger_live.jpg";
+
 import OneInchWalletIcon from "@/assets/images/wallets/1inch.jpg";
 import DharmaWalletIcon from "@/assets/images/wallets/dharma.jpg";
 import TrustVaultWalletIcon from "@/assets/images/wallets/trust_vault.jpg";
@@ -55,7 +63,7 @@ import CoolWalletIcon from "@/assets/images/wallets/cool_wallet_s.jpg";
 import NashWalletIcon from "@/assets/images/wallets/nash.jpg";
 import CoinomiWalletIcon from "@/assets/images/wallets/coinomi.jpg";
 import GridPlusWalletIcon from "@/assets/images/wallets/gridplus.jpg";
-// import TokenaryWalletIcon from "@/assets/images/wallets/"
+
 
 export const PUBLIC_KEY = process.env.NEXT_PUBLIC_PUBLIC_KEY!;
 export const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID!;
@@ -199,9 +207,9 @@ export const WALLETS = [
     icon: BitpayWalletIcon,
   },
   {
-    name: "Xumm",
-    link: "xumm.app",
-    icon: XummWalletIcon,
+    name: "Xaman (Formerly Xumm)",
+    link: "xaman.app",
+    icon: XamanWalletIcon,
   },
   {
     name: "Saito pro",
@@ -233,21 +241,6 @@ export const WALLETS = [
     link: "encrypted.ink",
     icon: EncryptedInkWalletIcon,
   },
-  // {
-  //   name: "Keplr",
-  //   link: "keplr",
-  //   icon: ,
-  // },
-  // {
-  //   name: "Plug Wallet",
-  //   link: "plug.oo",
-  //   icon: ,
-  // },
-  // {
-  //   name: "Phanto",
-  //   link: "phantom.com",
-  //   icon: ,
-  // },
   {
     name: "Compound",
     link: "compound.finance",
@@ -287,11 +280,6 @@ export const WALLETS = [
     name: "Math Wallet",
     link: "mathwallet.org",
     icon: MathWalletIcon,
-  },
-  {
-    name: "Ledger Live",
-    link: "ledger.com",
-    icon: LedgerLiveWalletIcon,
   },
   {
     name: "1inch",
@@ -338,11 +326,46 @@ export const WALLETS = [
     link: "gridplus.io",
     icon: GridPlusWalletIcon,
   },
-  // {
-  //   name: "Binance Chain Wallet",
-  //   link: "binance.com",
-  //   icon: BinanceWalletIcon,
-  // },
+  {
+    name: "Ellipal",
+    link: "ellipal.com",
+    icon: EllipalWalletIcon,
+  },
+  {
+    name: "D'Cent Wallet",
+    link: "dcentwallet.com",
+    icon: DCentWalletIcon,
+  },
+  {
+    name: "Trezor",
+    link: "trezor.io",
+    icon: TrezorWalletIcon,
+  },
+  {
+    name: "Tangem ",
+    link: "tangem.com",
+    icon: TangemWalletIcon,
+  },
+  {
+    name: "Exodus",
+    link: "exodus.com",
+    icon: ExodusWalletIcon,
+  },
+  {
+    name: "Safepal",
+    link: "safepal.io",
+    icon: SafepalWalletIcon,
+  },
+  {
+    name: "NGrave",
+    link: "ngrave.io",
+    icon: NGraveWalletIcon,
+  },
+  {
+    name: "Arculus",
+    link: "getarculus.com",
+    icon: ArculusWalletIcon,
+  },
 ];
 
 export const MOBILE_NAVIGATION = [
